@@ -1,0 +1,16 @@
+Package: pspa
+Type: Package
+Title: post-prediction adaptive inference
+Version: 1.0.0
+Authors@R: person("Jiacheng", "Miao", email = "jiacheng.miao@wisc.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-4524-7408"))
+Maintainer: Jiacheng Miao <jiacheng.miao@wisc.edu>
+Description: Implementation of post-prediction adaptive inference(pspa), for valid and efficient statistical inference based on data predicted by machine learning. See Miao, Miao, Wu, Zhao, and Lu (2023) <arXiv:2311.14220>.
+URL: https://arxiv.org/abs/2311.14220, https://github.com/qlu-lab/pspa
+Depends:
+  R (>= 3.5.0),
+Imports:
+  randomForest,
+  MASS
+License: GPL-3
+Encoding: UTF-8
+RoxygenNote: 7.3.1
