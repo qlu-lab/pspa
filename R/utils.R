@@ -296,6 +296,14 @@ Sigma_cal_x <- function(X_lab, Xhat_lab, Xhat_unlab, Y_lab, Y_unlab, w, theta, q
 optim_est <- function(X_lab, X_unlab, Y_lab, Yhat_lab, Yhat_unlab, w, theta, quant = NA, method) {
   if (method == "mean") {
     theta <- mean(Y_lab) + as.vector(w) * (mean(Yhat_unlab) - mean(Yhat_lab))
+  } else if (method == "quantile"){
+    A_lab <- A(X_lab, Y_lab, quant, theta, method)
+    Ahat_lab <- A(X_lab, Yhat_lab, quant, theta, method)
+    Ahat_unlab <- A(X_unlab, Yhat_unlab, quant, theta, method)
+    A <- A_lab + w * (Ahat_unlab - Ahat_lab)
+    A_inv <- 1 / A
+    theta <- theta - A_inv * mean_psi_pop(X_lab, X_unlab, Y_lab, Yhat_lab, Yhat_unlab, w, theta, quant = quant, method = method)
+
   } else if (method == "ols"){
     A <- A(rbind(X_lab, X_unlab), c(Y_lab, Yhat_unlab), quant, theta, method)
     A_inv <- solve(A)
